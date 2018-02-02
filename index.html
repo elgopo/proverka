@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my Phonebook</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/fonts.css">
+    <link rel="stylesheet" href="style/fontawesome/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Archivo+Black">
+    <meta name="viewport" content="user-scalable=0">
+</head>
+<body onload="checkStorageForContacts();">
+    <header>
+        <div class="pb">
+            <h1>Phonebook</h1>
+        </div>
+        <div>
+            <div class="search">
+                <form>
+                    <input class="search_field" value = "" onkeyup="search()" id="search_field" type="text" placeholder="Enter Name or Last Name here...">
+                    <input class="search_btn" id="reset" type="submit" title="Clear Search" value="x">
+                </form>
+            </div>
+            <div class="add_contact">
+                <form onsubmit="sortIt()">
+                    <input id="addBtn" onclick="addBtnContact()" class="add_btn" title="Create new contact" type="button" value="+ Add">
+                </form>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div id="myModal" class="modal">
+            <div class="modal-content modal_form">
+                <span onclick="closeModal()" class="close">&times;</span>
+                <form id="formAddContact">
+                    <div class="add_form">
+                        <div class="add_name">
+                            First Name<br>
+                            <input type="text" pattern="[A-zА-я\s]+$" title="Only letter is accepted" class="formField" name="name" id="formName" placeholder="Enter First Name" required><br>
+                            Last name<br>
+                            <input type="text" pattern="[A-zА-я\s]+$" title="Only letter is accepted" name="lastname" id="formLastname" placeholder="Enter Last Name" required>
+                        </div>
+                        <div class="add_card">
+                            <div class="tels_form" id="tels_form">
+                             <p id="tel_field0" class="tel_f">
+                                <i class="fa fa-mobile" aria-hidden="true"></i>
+                                <input type="tel" name="telephone" id="formTelephone0" maxlength="13" placeholder="Enter your Phone" title="Example : +380507015901">
+                             </p>
+                            </div>
+                            <div class="emails_form" id="emails_form">
+                            <p id="email_field0" class="email_f">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <input type="email" name="email" id="formEmail0" title="Example: mail@google.com" required placeholder="Enter your Email" >
+                            </p>
+                            </div>
+                            <p>
+                                <input class="addSave" id="addSave" title="Save new contact" type="submit" value="Save">
+                                <input class="addSave" id="addSaveEdit" type="button" title="Save contact"  value="Save It">
+                            </p>
+                        </div> 
+                    </div>     
+                </form>
+            </div>
+        </div>
+        <div id="myModalRemove" class="modal">
+            <div class="modal-content modal_remove_content">
+                <p>Delete this contact?</p>
+                <button id="remove_yes">Yes</button>
+                <button id="remove_no">No</button>
+            </div>
+        </div>
+        <div id="myModalCreating" class="modal">
+            <div class="modal-content modal_remove_content">
+                <p id="p_change">The new contact was created</p>
+                <button id="ok_btn" onclick = "closeMessage()">Ok</button>
+            </div>
+        </div>
+        <p id="noContacts">No contacts</p>
+        <p id="no_res">No contacts were found</p>
+        <div id="contacts">
+        </div>
+        <script src="js/index.js"></script>
+    </main>
+</body>
+</html>
